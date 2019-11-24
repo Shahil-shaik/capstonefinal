@@ -1,5 +1,5 @@
 import cv2
-import os
+import os,sys
 
 cam = cv2.VideoCapture(0)
 cam.set(3, 640)
