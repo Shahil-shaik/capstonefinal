@@ -3,15 +3,10 @@ import os
 
 face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-face_id = input('\n enter user id end press <return> ==>  ')
+face_id = sys.argv[1]
 
-a=input('Enter the path : ')
-cam = cv2.VideoCapture(a)
+cam = cv2.VideoCapture(sys.argv[2])
 
-if (cam.isOpened()== False): 
-  print("Error opening video stream or file")
-
-print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 count = 0
 
 while(cam.isOpened()) :
@@ -34,6 +29,5 @@ while(cam.isOpened()) :
         if k == 27:
             break
     else:
-        print("\n [INFO] Exiting Program and cleanup stuff")
         cam.release()
         cv2.destroyAllWindows() 

@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import os 
+import os,sys 
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
@@ -15,8 +15,7 @@ cam.set(4, 480)
 minW = 0.1*cam.get(3)
 minH = 0.1*cam.get(4)
 
-a=input('Enter the path : ')
-cam = cv2.VideoCapture(a)
+cam = cv2.VideoCapture(sys.argv[1]))
  
 if (cam.isOpened()== False): 
   print("Error opening video stream or file")

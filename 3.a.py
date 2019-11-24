@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import os 
+import os,sys 
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
@@ -8,9 +8,7 @@ faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-i=input('Enter the path : ')
-
-img=cv2.imread(i)
+img=cv2.imread(sys.argv[1])
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
 faces = faceCascade.detectMultiScale( 
         gray,
@@ -18,7 +16,6 @@ faces = faceCascade.detectMultiScale(
         minNeighbors = 5
        ) 
 for(x,y,w,h) in faces:
-
     cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
     id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
     if (confidence < 50):
@@ -36,5 +33,4 @@ for(x,y,w,h) in faces:
     if k == 27:
         break
 
-print("\n [INFO] Exiting Program and cleanup stuff")
 cv2.destroyAllWindows()
