@@ -7,9 +7,8 @@ cam.set(4, 480)
 
 face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-face_id = input('\n enter user id end press <return> ==>  ')
+face_id = sys.argv[1]
 
-print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 count = 0
 
 while(True):
@@ -33,8 +32,6 @@ while(True):
     elif count >= 30: 
          break
 
-
-print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()
 cv2.destroyAllWindows()
 
